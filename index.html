@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Construtor de Ofícios Moderno</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="background-glow" aria-hidden="true"></div>
+    <main class="app-shell">
+      <header class="hero">
+        <div>
+          <p class="badge">Gerador Inteligente</p>
+          <h1>Construtor de Ofícios</h1>
+          <p class="subtitle">
+            Crie ofícios com visual profissional, dados automáticos e exportação em poucos cliques.
+          </p>
+        </div>
+        <div class="clock-card" aria-live="polite">
+          <p>Agora</p>
+          <strong id="liveClock">--:--:--</strong>
+          <span id="liveDate">--</span>
+        </div>
+      </header>
+
+      <section class="grid-layout">
+        <form id="oficioForm" class="panel form-panel">
+          <h2>Dados do Ofício</h2>
+
+          <div class="field-grid">
+            <label>
+              Órgão/Instituição
+              <input name="orgao" placeholder="Ex.: Secretaria Municipal de Administração" required />
+            </label>
+
+            <label>
+              Departamento/Setor
+              <input name="setor" placeholder="Ex.: Diretoria de Compras" />
+            </label>
+
+            <label>
+              Cidade
+              <input name="cidade" placeholder="Ex.: São Paulo" required />
+            </label>
+
+            <label>
+              Número do Ofício
+              <input name="numero" id="numeroOficio" readonly />
+            </label>
+
+            <label>
+              Destinatário
+              <input name="destinatario" placeholder="Ex.: Sr(a). João da Silva" required />
+            </label>
+
+            <label>
+              Cargo do Destinatário
+              <input name="cargoDestinatario" placeholder="Ex.: Diretor(a) Financeiro(a)" />
+            </label>
+
+            <label>
+              Assunto
+              <input name="assunto" placeholder="Ex.: Solicitação de documentos" required />
+            </label>
+
+            <label>
+              Prazo (opcional)
+              <input type="date" name="prazo" />
+            </label>
+          </div>
+
+          <label>
+            Corpo do Ofício
+            <textarea
+              name="corpo"
+              rows="10"
+              placeholder="Descreva a solicitação/comunicado. Use {{destinatario}}, {{assunto}}, {{cidade}} e {{data}} para preenchimento automático."
+              required
+            ></textarea>
+          </label>
+
+          <div class="template-buttons">
+            <button type="button" data-template="solicitacao">Template: Solicitação</button>
+            <button type="button" data-template="comunicado">Template: Comunicado</button>
+            <button type="button" data-template="encaminhamento">Template: Encaminhamento</button>
+          </div>
+
+          <h3>Assinatura</h3>
+          <div class="field-grid">
+            <label>
+              Nome do Responsável
+              <input name="assinanteNome" placeholder="Ex.: Maria Oliveira" required />
+            </label>
+
+            <label>
+              Cargo do Responsável
+              <input name="assinanteCargo" placeholder="Ex.: Secretária Municipal" required />
+            </label>
+
+            <label>
+              Matrícula/Registro
+              <input name="registro" placeholder="Ex.: 12345" />
+            </label>
+          </div>
+
+          <div class="actions">
+            <button type="submit" class="primary">Atualizar Prévia</button>
+            <button type="button" id="printBtn">Imprimir / PDF</button>
+            <button type="button" id="copyBtn">Copiar Texto</button>
+            <button type="button" id="downloadBtn">Baixar .txt</button>
+            <button type="reset" id="resetBtn">Limpar</button>
+          </div>
+        </form>
+
+        <section class="panel preview-panel">
+          <div class="preview-head">
+            <h2>Pré-visualização</h2>
+            <p>Atualização em tempo real</p>
+          </div>
+          <article id="previewDocument" class="document" aria-live="polite"></article>
+        </section>
+      </section>
+    </main>
+
+    <template id="docTemplate">
+      <header class="doc-header">
+        <p class="doc-org"></p>
+        <p class="doc-setor"></p>
+      </header>
+      <div class="doc-meta">
+        <p><strong>Ofício nº</strong> <span class="doc-numero"></span></p>
+        <p><strong>Assunto:</strong> <span class="doc-assunto"></span></p>
+      </div>
+      <p class="doc-local-data"></p>
+      <p class="doc-destinatario"></p>
+      <p class="doc-cargo"></p>
+      <p class="doc-saudar">Prezado(a),</p>
+      <div class="doc-corpo"></div>
+      <p class="doc-fecho">Atenciosamente,</p>
+      <footer class="doc-footer">
+        <p class="doc-assinante"></p>
+        <p class="doc-cargo-assinante"></p>
+        <p class="doc-registro"></p>
+      </footer>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>

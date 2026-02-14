@@ -1,0 +1,277 @@
+:root {
+  --bg: #f4f7ff;
+  --panel: #ffffff;
+  --ink: #0f1b3d;
+  --muted: #5d6b95;
+  --line: #dce3ff;
+  --primary: #3e63dd;
+  --primary-soft: #e2ebff;
+  --radius: 18px;
+  --shadow: 0 18px 45px rgba(38, 64, 151, 0.16);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.background-glow {
+  position: fixed;
+  inset: -200px;
+  background: radial-gradient(circle at 15% 10%, #c8d6ff 0%, transparent 42%),
+    radial-gradient(circle at 90% 20%, #d7cbff 0%, transparent 35%),
+    radial-gradient(circle at 60% 100%, #bcefff 0%, transparent 30%);
+  z-index: -1;
+}
+
+.app-shell {
+  width: min(1400px, 95vw);
+  margin: 34px auto;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.badge {
+  display: inline-block;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 0.77rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  margin: 0 0 8px;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
+.subtitle {
+  margin-top: 8px;
+  color: var(--muted);
+  max-width: 66ch;
+}
+
+.clock-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 15px 20px;
+  min-width: 220px;
+}
+
+.clock-card p,
+.clock-card span {
+  margin: 0;
+  color: var(--muted);
+}
+
+.clock-card strong {
+  font-size: 1.9rem;
+}
+
+.grid-layout {
+  display: grid;
+  grid-template-columns: minmax(320px, 1fr) minmax(380px, 1fr);
+  gap: 16px;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.form-panel {
+  padding: 20px;
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 14px 0;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+input,
+textarea,
+button {
+  font: inherit;
+}
+
+input,
+textarea {
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  padding: 0.7rem 0.8rem;
+  color: var(--ink);
+  background: #fff;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.template-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0 10px;
+}
+
+button {
+  cursor: pointer;
+  border: 1px solid var(--line);
+  padding: 0.65rem 0.9rem;
+  border-radius: 11px;
+  background: #f8f9ff;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+button:hover {
+  filter: brightness(0.98);
+}
+
+button.primary {
+  background: var(--primary);
+  color: white;
+  border-color: transparent;
+}
+
+.actions {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.preview-panel {
+  padding: 20px;
+}
+
+.preview-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
+}
+
+.preview-head p {
+  color: var(--muted);
+}
+
+.document {
+  border: 1px dashed var(--line);
+  background: white;
+  border-radius: 12px;
+  padding: 22px;
+  min-height: 82vh;
+  line-height: 1.55;
+}
+
+.doc-header,
+.doc-meta {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.doc-header p,
+.doc-meta p,
+.doc-footer p {
+  margin: 0.25rem 0;
+}
+
+.doc-org {
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+.doc-setor {
+  color: var(--muted);
+}
+
+.doc-local-data {
+  text-align: right;
+}
+
+.doc-corpo p {
+  margin: 0 0 1rem;
+  text-align: justify;
+}
+
+.doc-footer {
+  margin-top: 52px;
+  text-align: center;
+}
+
+@media (max-width: 1050px) {
+  .grid-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .document {
+    min-height: 60vh;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .field-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media print {
+  body {
+    background: white;
+  }
+
+  .background-glow,
+  .hero,
+  .form-panel,
+  .preview-head {
+    display: none !important;
+  }
+
+  .app-shell,
+  .panel,
+  .preview-panel,
+  .document {
+    margin: 0;
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+  }
+}
